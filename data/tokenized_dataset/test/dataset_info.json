@@ -1,0 +1,55 @@
+{
+  "builder_name": "json",
+  "citation": "",
+  "config_name": "default",
+  "dataset_name": "ru-word-games",
+  "dataset_size": 13114161,
+  "description": "",
+  "download_checksums": {
+    "hf://datasets/artemsnegirev/ru-word-games@d1bc934e7f492e0a199010ed2aed98abceebcd20/dataset.json": {
+      "num_bytes": 17256869,
+      "checksum": null
+    }
+  },
+  "download_size": 17256869,
+  "features": {
+    "input_ids": {
+      "feature": {
+        "dtype": "int32",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "token_type_ids": {
+      "feature": {
+        "dtype": "int8",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "attention_mask": {
+      "feature": {
+        "dtype": "int8",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 30371030,
+  "splits": {
+    "train": {
+      "name": "train",
+      "num_bytes": 13114161,
+      "num_examples": 133223,
+      "dataset_name": "ru-word-games"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}
