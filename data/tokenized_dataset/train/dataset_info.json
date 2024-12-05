@@ -13,6 +13,23 @@
   },
   "download_size": 17256869,
   "features": {
+    "subset": {
+      "names": [
+        "350_zagadok",
+        "ostrova",
+        "ugadaj_slova",
+        "umnyasha"
+      ],
+      "_type": "ClassLabel"
+    },
+    "answer": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "prompt": {
+      "dtype": "string",
+      "_type": "Value"
+    },
     "input_ids": {
       "feature": {
         "dtype": "int32",
@@ -20,16 +37,16 @@
       },
       "_type": "Sequence"
     },
-    "token_type_ids": {
+    "attention_mask": {
       "feature": {
         "dtype": "int8",
         "_type": "Value"
       },
       "_type": "Sequence"
     },
-    "attention_mask": {
+    "labels": {
       "feature": {
-        "dtype": "int8",
+        "dtype": "int64",
         "_type": "Value"
       },
       "_type": "Sequence"

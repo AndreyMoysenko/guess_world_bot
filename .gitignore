@@ -3,3 +3,8 @@ __pycache__/
 .env
 *.log
 lsml_env
+secrets.txt
+lsml_model/
+wandb/
+data/
+**/models/
