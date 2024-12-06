@@ -1,0 +1,8 @@
+celery
+flask
+peft
+pyyaml
+redis
+sentencepiece
+torch
+transformers

@@ -1,0 +1,10 @@
+notebooks/
+images/
+data/
+lsml_model/
+wandb/
+.git/
+.gitignore
+.env
+secrets.yml
+README.md

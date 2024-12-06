@@ -1,13 +1,18 @@
 from flask import Flask, request, jsonify
 from tasks import generate_predictions_task  # Import the Celery task
 from celery import Celery
+import os
 
 # Initialize Flask app
 app = Flask(__name__)
 
 # Configure Celery
-app.config["CELERY_BROKER_URL"] = "redis://localhost:6379/0"
-app.config["CELERY_RESULT_BACKEND"] = "redis://localhost:6379/0"
+app.config["CELERY_BROKER_URL"] = os.getenv(
+    "CELERY_BROKER_URL", "redis://localhost:6379/0"
+)
+app.config["CELERY_RESULT_BACKEND"] = os.getenv(
+    "CELERY_RESULT_BACKEND", "redis://localhost:6379/0"
+)
 
 
 def make_celery(app):
@@ -54,6 +59,11 @@ def get_results(task_id):
         return jsonify({"status": "failed", "error": str(task_result.info)})
     else:
         return jsonify({"status": task_result.state.lower()})
+
+
+@app.route("/", methods=["GET"])
+def health_check():
+    return {"status": "healthy"}, 200
 
 
 if __name__ == "__main__":

@@ -1,3 +1,4 @@
+import os
 from telegram import Update
 from telegram.ext import (
     ApplicationBuilder,
@@ -7,20 +8,16 @@ from telegram.ext import (
     ContextTypes,
 )
 import requests
-import yaml
 
-
-# Load secrets from secrets.yml
-def load_secrets():
-    with open("secrets.yml", "r") as file:
-        return yaml.safe_load(file)
-
-
-secrets = load_secrets()
-BOT_TOKEN = secrets["telegram_bot"]["token"]
+# Load the bot token from the environment
+BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+if not BOT_TOKEN:
+    raise ValueError(
+        "Telegram bot token not set in TELEGRAM_BOT_TOKEN environment variable"
+    )
 
 # Define the base URL for your Flask API
-API_BASE_URL = "http://127.0.0.1:5000"
+API_BASE_URL = "http://app:5000"  # Use the container name "app" to communicate within the Docker network
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -49,8 +46,6 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
 
                 if result_data["status"] == "completed":
                     predictions = result_data["predictions"]
-
-                    # Split the response into the required format
                     top_guess = predictions[0]
                     alternative_guesses = ", ".join(predictions[1:])
                     reply = (
