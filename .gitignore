@@ -4,7 +4,3 @@ __pycache__/
 *.log
 lsml_env
 secrets.txt
-lsml_model/
-wandb/
-data/
-**/models/
