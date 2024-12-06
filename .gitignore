@@ -3,4 +3,4 @@ __pycache__/
 .env
 *.log
 lsml_env
-secrets.txt
+secrets.yml
