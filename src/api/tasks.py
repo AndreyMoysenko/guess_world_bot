@@ -1,6 +1,7 @@
 from celery import Celery
 from transformers import T5Tokenizer, T5ForConditionalGeneration
 from peft import PeftModel, PeftConfig
+import os
 
 # Initialize Celery
 celery = Celery(
@@ -9,8 +10,14 @@ celery = Celery(
     broker="redis://redis:6379/0",
 )
 
-# Load the model and tokenizer
-model_dir = "/app/models/final_model"  # Use absolute path
+# Determine model directory dynamically
+if os.path.exists("/app/models/final_model"):
+    # docker
+    model_dir = "/app/models/final_model"
+else:
+    # locally
+    model_dir = "./models/final_model"
+
 peft_config = PeftConfig.from_pretrained(model_dir)
 base_model = T5ForConditionalGeneration.from_pretrained(
     peft_config.base_model_name_or_path
